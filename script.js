@@ -20,20 +20,28 @@ function handleNoClick() {
     noButton.textContent = messages[messageIndex];
     messageIndex++;
 
-    // After showing the last message, disable the button and hide it
+    // Remove the button right after displaying the "Just kidding" message
     if (messageIndex === messages.length) {
+        noButton.textContent = "Just kidding, say yes please! ❤️";
         setTimeout(() => {
-            noButton.style.display = "none";  // Hide the "No" button
-        }, 1500);  // Add a short delay to let the last message show before hiding
-        
-        // Remove the click event listener so it no longer responds to clicks
-        noButton.removeEventListener("click", handleNoClick);
+            noButton.style.display = "none";  // Hide the "No" button immediately after showing the last message
+        }, 1000);  // Short delay to display the last message before the button disappears
     }
 }
 
 function handleYesClick() {
-    window.location.href = "yes_page.html";
+    const yesButton = document.querySelector('.yes-button');
+    
+    // Make the "Yes" button bigger on every click
+    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+    yesButton.style.fontSize = `${currentSize * 1.5}px`;
+
+    // Redirect to the "yes_page.html" when clicked
+    setTimeout(() => {
+        window.location.href = "yes_page.html";
+    }, 500);  // Short delay before redirecting to the "Yes" page
 }
 
-// Attach the event listener when the script is loaded
-document.querySelector('.no-button').addEventListener("click",
+// Attach event listeners
+document.querySelector('.no-button').addEventListener("click", handleNoClick);
+document.querySelector('.yes-button').addEventListener("click", handleYesClick);
