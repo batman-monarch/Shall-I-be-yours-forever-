@@ -34,12 +34,12 @@ function handleYesClick() {
     
     // Make the "Yes" button bigger on every click
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
+    yesButton.style.fontSize = `${currentSize * 1.2}px`;  // Increase by 20% every click
 
-    // Redirect to the "yes_page.html" when clicked
+    // Redirect to the "yes_page.html" after a slight delay
     setTimeout(() => {
         window.location.href = "yes_page.html";
-    }, 500);  // Short delay before redirecting to the "Yes" page
+    }, 1500);  // 1.5-second delay to enjoy the growing button effect
 }
 
 // Attach event listeners
