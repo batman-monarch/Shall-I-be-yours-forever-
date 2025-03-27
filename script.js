@@ -25,13 +25,13 @@ function handleNoClick() {
     if (messageIndex === messages.length) {
         noButton.textContent = "Just kidding, say yes please! ❤️";
         setTimeout(() => {
-            noButton.style.display = "none";  // Hide the No button after showing the last message
-        }, 1000);
+            noButton.remove();  // Completely remove the No button after showing the last message
+        }, 1000);  // Slight delay to show the last message
     }
 
-    // Increase the size of the Yes button every time the No button is clicked
+    // Increase the size of the Yes button dramatically every time the No button is clicked
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.2}px`;  // Increase size by 20% each time
+    yesButton.style.fontSize = `${currentSize * 2.0}px`;  // Dramatic size increase (200%)
 }
 
 function handleYesClick() {
