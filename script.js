@@ -15,14 +15,16 @@ let messageIndex = 0;
 
 function handleNoClick() {
     const noButton = document.querySelector('.no-button');
-    noButton.textContent = messages[messageIndex];
-    messageIndex = (messageIndex + 1) % messages.length;
 
-    // When the last message ("Just kidding, say yes please! ❤️") is displayed, hide the No button
-    if (messageIndex === 0) {
+    // Display the current message
+    noButton.textContent = messages[messageIndex];
+    messageIndex++;
+
+    // If we reach the last message, hide the No button
+    if (messageIndex === messages.length) {
         setTimeout(() => {
-            noButton.style.display = "none";  // This will hide the No button
-        }, 1500);  // Add a small delay to make sure the last message is visible before disappearing
+            noButton.style.display = "none";  // Hide the No button after the last message
+        }, 1500);  // Add a short delay to show the "Just kidding" message before hiding
     }
 }
 
