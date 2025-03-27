@@ -15,33 +15,30 @@ let messageIndex = 0;
 
 function handleNoClick() {
     const noButton = document.querySelector('.no-button');
+    const yesButton = document.querySelector('.yes-button');
     
-    // Display the current message
+    // Show message and increment index
     noButton.textContent = messages[messageIndex];
     messageIndex++;
 
-    // Remove the button right after displaying the "Just kidding" message
+    // After the last message, hide the No button
     if (messageIndex === messages.length) {
         noButton.textContent = "Just kidding, say yes please! ❤️";
         setTimeout(() => {
-            noButton.style.display = "none";  // Hide the "No" button immediately after showing the last message
-        }, 1000);  // Short delay to display the last message before the button disappears
+            noButton.style.display = "none";  // Hide the No button after showing the last message
+        }, 1000);
     }
+
+    // Increase the size of the Yes button every time the No button is clicked
+    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+    yesButton.style.fontSize = `${currentSize * 1.2}px`;  // Increase size by 20% each time
 }
 
 function handleYesClick() {
-    const yesButton = document.querySelector('.yes-button');
-    
-    // Make the "Yes" button bigger on every click
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.2}px`;  // Increase by 20% every click
-
-    // Redirect to the "yes_page.html" after a slight delay
-    setTimeout(() => {
-        window.location.href = "yes_page.html";
-    }, 1500);  // 1.5-second delay to enjoy the growing button effect
+    // Redirect to the Yes page
+    window.location.href = "yes_page.html";
 }
 
-// Attach event listeners
+// Attach event listeners to buttons
 document.querySelector('.no-button').addEventListener("click", handleNoClick);
 document.querySelector('.yes-button').addEventListener("click", handleYesClick);
