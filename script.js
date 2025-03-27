@@ -15,11 +15,15 @@ let messageIndex = 0;
 
 function handleNoClick() {
     const noButton = document.querySelector('.no-button');
-    const yesButton = document.querySelector('.yes-button');
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
+
+    // When the last message ("Just kidding, say yes please! ❤️") is displayed, hide the No button
+    if (messageIndex === 0) {
+        setTimeout(() => {
+            noButton.style.display = "none";  // This will hide the No button
+        }, 1500);  // Add a small delay to make sure the last message is visible before disappearing
+    }
 }
 
 function handleYesClick() {
